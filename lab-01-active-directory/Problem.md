@@ -2,6 +2,7 @@
 
 ## Reported Issue
 A domain user reported being unable to log in to their workstation. The system indicated that the user account required a password change, but the login process repeatedly failed, preventing access to the desktop.
+No recent changes were applied directly to Active Directory configuration, and the Domain Controller appears to be running normally.
 
 ---
 
