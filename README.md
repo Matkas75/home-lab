@@ -38,19 +38,16 @@ Each lab is organized as an independent scenario and includes:
 
 General structure:
 
-> home-lab/
->    │
->    ├── lab-01-active-directory/
->    │ ├── README.md
->    │ ├── Problem.md
->    │ └── Developing.md
->    │
->    ├── lab-02-networking/
->    │ ├── README.md
->    │ ├── Problem.md
->    │ └── Developing.md
->    │
->    └── scripts/
+home-lab/
+    lab-01-active-directory/
+        Developing.md
+        Problem.md
+        README.md
+    lab-02-networking/
+        Developing.md
+        Problem.md
+        README.md
+    scripts/
 
 
 ---
