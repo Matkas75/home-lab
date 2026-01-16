@@ -1,4 +1,9 @@
-# Diagnosis
+# Investigation – User Locked Out (Active Directory)
+
+This document describes the troubleshooting process followed to identify
+and resolve the authentication issue in the Active Directory lab.
+The investigation was performed step by step, validating each layer
+of the infrastructure.
 
 The troubleshooting process was performed following a layered approach:
 Network → DNS → Active Directory authentication.
