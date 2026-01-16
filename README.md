@@ -38,11 +38,12 @@ Each lab is organized as an independent scenario and includes:
 
 General structure:
 
-home-lab/
+home-lab\
     lab-01-active-directory/
         Developing.md
         Problem.md
         README.md
+
     lab-02-networking/
         Developing.md
         Problem.md
