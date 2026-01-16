@@ -36,19 +36,19 @@ Each lab is organized as an independent scenario and includes:
 - Implemented solution
 - Lessons learned
 
-General structure:
+**General structure:**
 
-home-lab\
-    lab-01-active-directory/
-        Developing.md
-        Problem.md
-        README.md
-
-    lab-02-networking/
-        Developing.md
-        Problem.md
-        README.md
-    scripts/
+    home-lab/
+    ├──lab-01-active-directory/
+    │    ├── Developing.md
+    │    ├── Problem.md
+    │    └── README.md
+    │
+    ├──lab-02-networking/
+    │    ├── Developing.md
+    │    ├── Problem.md
+    │    └── README.md
+    └──scripts/
 
 
 ---

@@ -11,14 +11,14 @@ Network → DNS → Active Directory authentication.
 - Confirmed both systems were on the same subnet
 
 
-Commands used:
-**ipconfig /all:** To check the Client and Windows Server IPs
-**ping <DC_IP_Address>:** To check connectivity between the Client and Windows Server.
-**ping <Client_IP_Address>:** To check connectivity between Windows Server and the Client.
-**nslookup lab.local <DC_IP_Address>:** To check if the problem is on the the Network or on the DNS.
+### Commands used:
+- **ipconfig /all:** To check the Client and Windows Server IPs
+- **ping <DC_IP_Address>:** To check connectivity between the Client and Windows Server.
+- **ping <Client_IP_Address>:** To check connectivity between Windows Server and the Client.
+- **nslookup lab.local <DC_IP_Address>:** To check if the problem is on the the Network or on the DNS.
 
 
-Findings:
+### Findings:
 - Network connectivity confirmed as functional
 - The client had a valid IPv4 address.
 - The IP address of one NIC belonged to a different subnet than the Domain Controller.
@@ -33,11 +33,11 @@ This raised concerns regarding both routing and name resolution.
 - Detected routing conflicts caused by NAT and Host-Only adapters
 - Disabled non-essential adapters to ensure traffic used the lab network
 
-Commands used:
-**ipconfig /all:** To identify active network interfaces on the client.
-**Disable-NetAdapter -Name "Ethernet" -Confirm:$false:** To disable NAT Ethernet interface (NIC) 
+### Commands used:
+- **ipconfig /all:** To identify active network interfaces on the client.
+- **Disable-NetAdapter -Name "Ethernet" -Confirm:$false:** To disable NAT Ethernet interface (NIC) 
 
-Result:
+### Result:
 - Routing issues resolved
 
 ---
@@ -48,19 +48,19 @@ Result:
 - Changed profile to Private and created explicit ICMP allow rules
 - Ensured bidirectional connectivity using ICMP after resolving firewall restrictions
 
-Commands used:
+### Commands used:
 - **Set-NetFirewallProfile -Profile Domain,Private,Public -Enabled False:** To deactivate the Firewall
-- **Set-NetConnectionProfile -InterfaceAlias "Ethernet" -NetworkCategory Private:** To change the client 
-- *network profile to Private `
-    New-NetFirewallRule `
-    -Name "Allow ICMPv4 In" `
-    -Protocol ICMPv4 `
-    -IcmpType 8 `
-    -Direction Inbound `
-    -Action Allow `
-    -Profile Any: To set up an explicit ICMP rule for the correct testing of Ping function.
+- **Set-NetConnectionProfile -InterfaceAlias "Ethernet" -NetworkCategory Private:** To change the client Interface from Public to Private
+- **New-NetFirewallRule \`**
+**-*DisplayName* "Allow ICMPv4 Inbound" \`**
+**-*Name* "Allow ICMPv4-In" \`**
+**-*Protocol* ICMPv4 \`**
+**-*IcmpType* 8 \`**
+**-*Direction* Inbound \`**
+**-*Action* Allow \`**
+**-*Profile* Any**: To set up an explicit ICMP rule for the correct testing of Ping function.
 
-Result:
+### Result:
 - Firewall no longer blocked required traffic
 
 ---
@@ -70,10 +70,10 @@ Result:
 - Active Directory SRV records could not be resolved
 - Client DNS was manually configured to point to the Domain Controller
 
-Command used:
-**nltest /dsgetdc:lab.local:** To verify if the client failed to locate the domain controller.
+### Command used:
+- **nltest /dsgetdc:lab.local:** To verify if the client failed to locate the domain controller.
 
-Result:
+### Result:
 - Domain name and DC discovery restored
 
 ---
@@ -84,7 +84,7 @@ Result:
 - Active Directory Domain Services were operational.
 - No critical errors were present in Event Viewer.
 
-Result:
+### Result:
 - Domain Controller correctly advertised services
 - Confirmed the issue originated from the client-side network and DNS configuration.
 
@@ -95,11 +95,11 @@ Result:
 - Kerberos authentication failed due to clock skew
 - Time service configuration and synchronization corrected
 
-Commands used:
+### Commands used:
 - **w32tm /config /syncfromflags:domhier /update:** To synchronize the time with the one on the Domain Controller.
-- net stop w32time
-- net start w32time
-- w32tm /resync
+- **net stop w32time**
+- **net start w32time**
+- **w32tm /resync**
 
 Result:
 - Kerberos authentication stabilized
